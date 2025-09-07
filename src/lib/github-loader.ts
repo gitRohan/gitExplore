@@ -9,10 +9,9 @@ export const loadGithubRepo=async(githubUrl:string,githubToken?:string)=>{
     const loader = new GithubRepoLoader(githubUrl,{
         accessToken:githubToken||process.env.GITHUB_TOKEN||'',
         branch:defaultBranch, // You might want to fetch the default branch dynamically
-        ignoreFiles:['package-lock.json','yarn.lock','pnpm-lock.yaml','bun.lockb'],
+        ignoreFiles:['package-lock.json','yarn.lock','pnpm-lock.yaml','bun.lockb','.gitignore','.gitattributes','README.md','LICENSE','LICENSE.md','docs','.github','.vscode','node_modules','.idea','dist','build','.next','out','coverage','.turbo','env.local','.env','.env.production','env.example','requirements.txt',],
         recursive:true,
         unknown:'warn',
-        maxConcurrency:5
     })
     const docs=await loader.load()
     return docs
@@ -26,13 +25,12 @@ export const indexGithubRepo=async(projectId:string,githubUrl:string,githubToken
 
         const sourceCodeEmbedding=await db.sourceCodeEmbedding.create({
             data:{
-                summary:embedding.summary,
                 sourceCode:embedding.sourceCode,
                 fileName:embedding.fileName,
                 projectId,
             }
         })
-
+        console.log(sourceCodeEmbedding)
         await db.$executeRaw`
         UPDATE "SourceCodeEmbedding"
         SET "summaryEmbedding"=${embedding.embedding}::vector
@@ -42,10 +40,8 @@ export const indexGithubRepo=async(projectId:string,githubUrl:string,githubToken
 
 const generateEmbeddings=async (docs:Document[])=>{
     return await Promise.all(docs.map(async doc=>{
-        const summary=await summarizeCode(doc)
-        const embedding=await generateEmbedding(summary)
+        const embedding=await generateEmbedding(JSON.parse(JSON.stringify(doc.pageContent)).slice(0,10000))
         return {
-            summary,
             embedding,
             sourceCode:JSON.parse(JSON.stringify(doc.pageContent)),
             fileName:doc.metadata.source

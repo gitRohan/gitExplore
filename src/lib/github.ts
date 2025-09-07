@@ -49,7 +49,6 @@ export const pollCommits=async (projectId:string)=>{
     const summaryResponses=await Promise.allSettled(unprocessedCommits.map(commit=>{
         return summarizeCommit(githubUrl,commit.commitHash)
     }))
-    console.log(summaryResponses)
     const summaries=summaryResponses.map((response)=>{
         if(response.status==='fulfilled'){
             return response.value as string
