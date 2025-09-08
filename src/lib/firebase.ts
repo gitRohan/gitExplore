@@ -10,7 +10,7 @@ import { error } from "console";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBh0ZT0t3SoJqgSE-5FmKrOjSOdvcchdm4",
+  apiKey: "securitykey",
   authDomain: "gitexplore-54c06.firebaseapp.com",
   projectId: "gitexplore-54c06",
   storageBucket: "gitexplore-54c06.firebasestorage.app",
