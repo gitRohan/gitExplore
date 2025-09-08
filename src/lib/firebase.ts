@@ -21,7 +21,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
 export const storage=getStorage(app);
 
 export async function uploadFile(file:File,setProgress?:(progress:number)=>void){
@@ -44,7 +43,7 @@ export async function uploadFile(file:File,setProgress?:(progress:number)=>void)
                 reject(error)
             },()=>{
                 getDownloadURL(uploadTask.snapshot.ref).then(downloadUrl=>{
-                    resolve(downloadUrl)
+                    resolve(downloadUrl as string)
                 })
             })
 

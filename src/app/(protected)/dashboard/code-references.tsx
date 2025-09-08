@@ -4,11 +4,13 @@ import { cn } from "~/lib/utils";
 import {Prism as SyntaxHighlighter} from 'react-syntax-highlighter'
 import {lucario} from 'react-syntax-highlighter/dist/esm/styles/prism'
 
+
 type Props={
     fileReferences:{fileName:string; sourceCode:string;}[]
 }
 
 const CodeReferences=({fileReferences}:Props)=>{
+    
     const [tab,setTab]=useState(fileReferences[0]?.fileName)
     return  (
         <div className="max-w-[70vw]">

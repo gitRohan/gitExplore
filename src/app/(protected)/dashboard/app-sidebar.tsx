@@ -24,7 +24,7 @@ export function AppSidebar(){
         },
         {
             title:"Meetings",
-            url:"/meetins",
+            url:"/meetings",
             icon:Presentation
         },
         {
