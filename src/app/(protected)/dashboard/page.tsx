@@ -1,11 +1,13 @@
 'use client'
-import { useUser } from "@clerk/nextjs";
 import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 import useProject from "~/hooks/use-project";
 import CommitLog from "./commit-log";
 import AskQuestionCard from "./ask-question-card";
 import MeetingCard from "./meeting-card";
+import ArchiveButton from "./archive-button";
+import InviteButton from "./invite-button";
+import TeamMembers from "./team-members";
 
 
 const Dashboard=()=>{
@@ -29,9 +31,9 @@ const Dashboard=()=>{
                 </div>
                 <div className="h-4"/>
                 <div className="flex items-center gap-4">
-                    TeamMembers 
-                    InviteButton
-                    ArchiveButton
+                    <TeamMembers/>
+                    <InviteButton/>
+                    <ArchiveButton/>
                 </div>
             </div>
             <div className="mt-4">
