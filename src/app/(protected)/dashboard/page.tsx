@@ -6,9 +6,9 @@ import CommitLog from "./commit-log";
 import AskQuestionCard from "./ask-question-card";
 import MeetingCard from "./meeting-card";
 import ArchiveButton from "./archive-button";
-import InviteButton from "./invite-button";
 import TeamMembers from "./team-members";
-
+import dynamic from "next/dynamic";
+const InviteButton=dynamic(()=>import('./invite-button'),{ssr:false})
 
 const Dashboard=()=>{
     const {project}=useProject()

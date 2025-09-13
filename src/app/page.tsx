@@ -7,6 +7,7 @@ import { api, HydrateClient } from "~/trpc/server";
 export default async function Home() {
 
   return (
-    <Button>Click me</Button>
+    <Button><Link href='/dashboard'>Go to Dashboard</Link></Button>
+    
   );
 }

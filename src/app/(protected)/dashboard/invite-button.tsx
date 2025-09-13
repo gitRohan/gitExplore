@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "~/components/ui/button";
@@ -22,7 +23,7 @@ const InviteButton=()=>{
                         navigator.clipboard.writeText(`${window.location.origin}/join/${projectId}`)
                         toast.success("copied to clipboard")
                     }}
-                        value={`${window.location.origin}/join/${projectId}`}
+                        value={`${window?.location.origin}/join/${projectId}`}
                     />
                 </DialogContent>
             </Dialog>
